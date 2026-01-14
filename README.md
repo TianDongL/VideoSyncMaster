@@ -67,7 +67,7 @@
 
 ### 1. 克隆仓库
 ```bash
-git clone https://github.com/YourUsername/VideoSync.git
+git clone https://github.com/TianDongL/VideoSyncMaster.git
 cd VideoSync
 ```
 

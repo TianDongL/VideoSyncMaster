@@ -66,7 +66,7 @@ For optimal performance, we recommend the following hardware:
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/YourUsername/VideoSync.git
+git clone https://github.com/TianDongL/VideoSyncMaster.git
 cd VideoSync
 ```
 
