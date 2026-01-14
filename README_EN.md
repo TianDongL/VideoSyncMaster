@@ -27,9 +27,9 @@ No cloud APIs, no subscription fees. Use your local GPU to perform **ASR (Speech
     *   Clones source voices instantly using just 3-10 seconds of reference audio.
     *   Perfectly preserves tone, emotion, and speech rhythm.
 
-*   **🌏 Powerful LLM Translation**
+*   **🌏 Powerful LLM (Translation)**
     *   Built-in **Qwen 2.5-7B-Instruct** large language model.
-    *   Supports deep context-aware translation between English, Chinese, Japanese, Korean, and more.
+    *   Currently supports high-quality **English <-> Chinese** translation.
     *   Produces natural, subtitle-group quality translations.
 
 *   **⚡ Extreme Optimization**
