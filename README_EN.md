@@ -48,7 +48,6 @@ No cloud APIs, no subscription fees. Use your local GPU to perform **ASR (Speech
 | :---: |
 | ![Main UI](asset/1.png) |
 | Subtitle Editor |
-| :---: |
 | ![Subtitle Edit](asset/2.png) |
 
 ---

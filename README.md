@@ -49,7 +49,6 @@
 | :---: |
 | ![Main UI](asset/1.png) |
 | 字幕编辑 |
-| :---: |
 | ![Subtitle Edit](asset/2.png) |
 ---
 
