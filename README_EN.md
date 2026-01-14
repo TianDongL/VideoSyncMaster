@@ -113,14 +113,19 @@ VideoSync/
 
 ### Option 1: Run from Source (Recommended for Devs/Linux)
 
-1.  **Start Frontend UI**:
+1.  **Start Application**:
+    Run the following command in the project root. The UI will launch and automatically spawn the python backend:
     ```bash
-    cd ui
     npm run dev
     ```
-    The Electron window will launch and automatically spawn the Python backend.
 
-    *Note: You can manually run the backend for testing via `python backend/main.py --action test_audio`.*
+    > **Note**: Ensure your Python environment is correctly set up in `backend/` or valid in system PATH.
+
+2.  *(Optional) Test Backend Manually*:
+    To debug the backend independently:
+    ```bash
+    python backend/main.py --help
+    ```
 
 ### Option 2: Build Installer (Windows)
 
@@ -132,20 +137,7 @@ npm run build
 ```
 The installer will be generated in `ui/release/`.
 
----
 
-## ❓ FAQ
-
-**Q: Why do I get "CUDA out of memory"?**
-A: MaskGCT is VRAM intensive. While we optimized the pipeline, running on 4GB-6GB cards requires closing other GPU-heavy apps.
-
-**Q: Can it recognize Chinese path names?**
-A: Yes, we fixed FFmpeg unicode handling. However, using English paths is always safer.
-
-**Q: Why is the first run slow?**
-A: The system automatically downloads auxiliary models (like VAD and BERT) from HuggingFace on the first initialization.
-
----
 
 ## 🤝 Acknowledgements
 

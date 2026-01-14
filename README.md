@@ -63,7 +63,7 @@
 
 ---
 
-## � 快速开始 | Quick Start
+## 🚀 快速开始 | Quick Start
 
 ### 1. 克隆仓库
 ```bash
@@ -110,23 +110,25 @@ VideoSync/
 
 ---
 
-## � 使用指南 | Usage
+## 🚀 使用指南 | Usage
 
 ### 方式一：源码运行 (开发者推荐)
 
-适合 Linux 用户或不想打包的开发者。
+适合 Linux 用户或进行二次开发。
 
-1.  **启动后端服务** (可选，实际会被 UI 自动调用，或是用于测试)：
+1.  **启动应用**：
+    在项目根目录运行以下命令，UI 界面启动后会自动拉起后台 Python 进程：
     ```bash
-    python backend/main.py --action test_audio
-    ```
-
-2.  **启动前端界面**：
-    ```bash
-    cd ui
     npm run dev
     ```
-    Electron 窗口启动后，会自动拉起后端 Python 进程。
+
+    > **注意**: 请确保您已在 `backend/` 目录下正确配置了 Python 环境，否则 UI 会因为找不到后台服务而报错。
+
+2.  *(可选) 单独测试后端*：
+    如果您需要调试后端 Python 代码，可以运行：
+    ```bash
+    python backend/main.py --help
+    ```
 
 ### 方式二：构建安装包 (Windows)
 
@@ -138,20 +140,9 @@ npm run build
 ```
 生成的安装包将位于 `ui/release/` 目录下。
 
----
 
-## ❓ 常见问题 | FAQ
 
-**Q: 为什么运行到一半报错 "CUDA out of memory"?**
-A: 请检查显存是否足够。虽然我们做了优化，但在 4GB 显存显卡上运行 MaskGCT 仍然非常勉强。建议关闭浏览器和其他占用显存的程序。
 
-**Q: 中文路径视频无法识别？**
-A: 我们已在代码中修复了 FFmpeg 的中文路径问题，但为了保险起见，建议尽量使用纯英文路径。
-
-**Q: 第一次运行下载很慢？**
-A: 项目首次运行时会自动从 HuggingFace 下载一些辅助的小模型（如 VAD 模型），请确保您的网络环境通畅。
-
----
 
 ## 🤝 贡献与致谢 | Acknowledgements
 
