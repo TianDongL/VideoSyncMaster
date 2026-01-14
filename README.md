@@ -156,9 +156,9 @@ A: 项目首次运行时会自动从 HuggingFace 下载一些辅助的小模型�
 
 本项目站在巨人的肩膀上，特别感谢以下开源项目的贡献：
 
+*   [**IndexTTS**](https://github.com/index-tts/index-tts): IndexTTS 团队提供的语音克隆支持。
 *   [**WhisperX**](https://github.com/m-bain/whisperX): 为 ASR 提供了精准的时间轴对齐。
-*   [**Amphion (MaskGCT)**](https://github.com/open-mmlab/Amphion): 提供了惊人的零样本语音克隆能力。
-*   [**Qwen**](https://github.com/QwenLM/Qwen): 通义千问大模型，提供了强大的翻译能力。
+*   [**Qwen**](https://github.com/QwenLM/Qwen3): 通义千问团队的大语言模型，提供了强大的翻译能力。
 
 如果你喜欢这个项目，欢迎点一个 Star 🌟！
 欢迎提交 Pull Request 或 Issue 来帮助改进 VideoSync。
@@ -167,4 +167,8 @@ A: 项目首次运行时会自动从 HuggingFace 下载一些辅助的小模型�
 
 ## 📜 许可证 | License
 
-[MIT License](LICENSE) © 2024 VideoSync Team
+*   ✅ **非商业用途**: 您可以自由复制、修改和分发代码，但**仅限非商业目的**。
+*   ❌ **禁止商用**: 未经作者授权，禁止将本项目或其衍生品用于任何形式的商业盈利活动。
+*   🔄 **相同方式共享**: 如果您修改了代码，您必须使用相同的协议开源您的修改。
+
+© 2024 VideoSync Team

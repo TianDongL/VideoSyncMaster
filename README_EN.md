@@ -150,9 +150,9 @@ A: The system automatically downloads auxiliary models (like VAD and BERT) from 
 
 This project stands on the shoulders of giants. Special thanks to:
 
+*   [**IndexTTS**](https://github.com/index-tts/index-tts): For the voice cloning support.
 *   [**WhisperX**](https://github.com/m-bain/whisperX): For precise alignment and VAD.
-*   [**Amphion (MaskGCT)**](https://github.com/open-mmlab/Amphion): For state-of-the-art zero-shot voice cloning.
-*   [**Qwen**](https://github.com/QwenLM/Qwen): For powerful multilingual capabilities.
+*   [**Qwen**](https://github.com/QwenLM/Qwen3): For powerful multilingual capabilities.
 
 If you like this project, please give us a Star 🌟!
 PRs and Issues are welcome.
@@ -161,4 +161,9 @@ PRs and Issues are welcome.
 
 ## 📜 License
 
-[MIT License](LICENSE) © 2024 VideoSync Team
+
+*   ✅ **Non-Commercial**: You are free to copy, modify, and distribute the code for **non-commercial purposes only**.
+*   ❌ **No Commercial Use**: Use of this project or its derivatives for commercial gain is strictly prohibited without prior authorization.
+*   🔄 **ShareAlike**: If you modify the code, you must distribute your contributions under the same license.
+
+© 2024 VideoSync Team
