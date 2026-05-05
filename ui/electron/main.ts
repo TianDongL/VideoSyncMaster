@@ -64,9 +64,86 @@ app.on('window-all-closed', () => {
   }
 })
 
-app.whenReady().then(() => {
-  console.log("App is ready, creating window...");
+// Check if VC++ Runtime is installed by looking for common DLLs
+async function checkVCRuntimeInstalled(): Promise<boolean> {
+  // Check for vcruntime140.dll in System32
+  const systemRoot = process.env.SYSTEMROOT || 'C:\\Windows';
+  const dllPath = path.join(systemRoot, 'System32', 'vcruntime140.dll');
+  return fs.existsSync(dllPath);
+}
+
+// Install VC++ Runtime from bundled installer
+async function installVCRuntime(projectRoot: string): Promise<boolean> {
+  const vcRedistPath = path.join(projectRoot, 'VC_redist.x64.exe');
+
+  if (!fs.existsSync(vcRedistPath)) {
+    console.log('[VCRuntime] VC_redist.x64.exe not found, skipping installation.');
+    return false;
+  }
+
+  console.log('[VCRuntime] Installing VC++ Runtime...');
+
+  return new Promise((resolve) => {
+    const installProcess = spawn(vcRedistPath, ['/install', '/quiet', '/norestart'], {
+      stdio: 'ignore'
+    });
+
+    installProcess.on('close', (code) => {
+      if (code === 0 || code === 3010) { // 3010 = success, reboot required
+        console.log('[VCRuntime] Installation successful.');
+        resolve(true);
+      } else {
+        console.error('[VCRuntime] Installation failed with code:', code);
+        resolve(false);
+      }
+    });
+
+    installProcess.on('error', (err) => {
+      console.error('[VCRuntime] Installation error:', err);
+      resolve(false);
+    });
+  });
+}
+
+// Check and install VC++ Runtime if needed
+async function checkAndInstallVCRuntime(): Promise<void> {
+  const isInstalled = await checkVCRuntimeInstalled();
+
+  if (isInstalled) {
+    console.log('[VCRuntime] VC++ Runtime is already installed.');
+    return;
+  }
+
+  console.log('[VCRuntime] VC++ Runtime not detected, attempting installation...');
+
+  // Determine project root
+  const projectRoot = app.isPackaged
+    ? path.dirname(process.resourcesPath)
+    : path.resolve(__dirname, '..', '..');
+
+  const success = await installVCRuntime(projectRoot);
+
+  if (!success) {
+    // Show a dialog to inform the user
+    const { dialog: earlyDialog } = require('electron');
+    earlyDialog.showMessageBoxSync({
+      type: 'warning',
+      title: '运行时组件缺失',
+      message: 'Microsoft Visual C++ 运行时库安装失败。\n\n如果程序无法正常运行，请手动运行程序目录下的 VC_redist.x64.exe 进行安装。',
+      buttons: ['确定']
+    });
+  }
+}
+
+app.whenReady().then(async () => {
+  console.log("App is ready, checking VC++ Runtime...");
+
+  // Check and install VC++ Runtime before creating window
+  await checkAndInstallVCRuntime();
+
+  console.log("Creating window...");
   createWindow()
+
 
   // IPC Handler for converting path to file URL (robust encoding)
   ipcMain.handle('get-file-url', async (_event, filePath: string) => {

@@ -63,15 +63,6 @@
         ]
       },
       {
-        "from": "../Qwen3-ASR",
-        "to": "Qwen3-ASR",
-        "filter": [
-          "**/*",
-          "!**/__pycache__/**",
-          "!**/*.pyc"
-        ]
-      },
-      {
         "from": "../requirements.txt",
         "to": "backend/requirements.txt"
       }

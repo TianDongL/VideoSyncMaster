@@ -104,8 +104,7 @@ const ASRHub: React.FC<ASRHubProps> = ({ themeMode, asrService, onServiceChange 
                         {[
                             { id: 'whisperx', name: 'WhisperX (本地实时)', desc: '高质量本地模型，支持音画同步对齐' },
                             { id: 'qwen', name: 'Qwen3 ASR (本地)', desc: 'Qwen2-Audio (1.7B/0.6B) 强大的多语种识别' },
-                            { id: 'jianying', name: '剪刀 API (云端)', desc: '速度极快，适合中文长视频' },
-                            { id: 'bcut', name: '硬币 API (云端)', desc: '稳定性好' }
+                            { id: 'bcut', name: '免费识别引擎', desc: '稳定可靠，适合各种视频类型' }
                         ].map(engine => (
                             <div
                                 key={engine.id}
@@ -188,8 +187,7 @@ const ASRHub: React.FC<ASRHubProps> = ({ themeMode, asrService, onServiceChange 
                     <ul style={{ paddingLeft: '20px', fontSize: '0.9em', lineHeight: '1.6' }}>
                         <li><b>WhisperX</b>: 本地运行，支持强制对齐，带 VAD。</li>
                         <li><b>Qwen3 ASR</b>: 阿里开源的端到端语音大模型，准确率高。</li>
-                        <li><b>剪映 API</b>: 速度最快，智能分段效果好。</li>
-                        <li><b>BCut API</b>: 稳定可靠，适合各种视频类型。</li>
+                        <li><b>免费识别引擎</b>: 稳定可靠，适合各种视频类型，无需配置 API Key。</li>
                     </ul>
                     <p style={{ fontSize: '0.85em', color: '#aaa', marginTop: '10px' }}>
                         所有云端引擎均已内置接口，无需配置 API Key。

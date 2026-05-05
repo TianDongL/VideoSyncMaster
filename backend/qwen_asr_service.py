@@ -8,6 +8,15 @@ import traceback
 os.environ['HF_HUB_OFFLINE'] = '1'
 os.environ['TRANSFORMERS_OFFLINE'] = '1'
 
+# Setup FFmpeg path for portable environment
+current_dir = os.path.dirname(os.path.abspath(__file__))
+ffmpeg_bin = os.path.join(current_dir, "ffmpeg", "bin")
+if os.path.exists(os.path.join(ffmpeg_bin, "ffmpeg.exe")):
+    if ffmpeg_bin not in os.environ.get("PATH", ""):
+        os.environ["PATH"] = ffmpeg_bin + os.pathsep + os.environ.get("PATH", "")
+        print(f"[QwenASR] Added FFmpeg to PATH: {ffmpeg_bin}")
+
+
 # Ensure environment requirements
 try:
     from dependency_manager import ensure_transformers_version
@@ -18,7 +27,7 @@ except ImportError:
 # Add Qwen3-ASR submodule to path
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.dirname(current_dir)
-qwen_repo_path = os.path.join(project_root, "Qwen3-ASR")
+qwen_repo_path = os.path.join(current_dir, "Qwen3-ASR")
 
 if os.path.exists(qwen_repo_path) and qwen_repo_path not in sys.path:
     print(f"[QwenASR] Adding {qwen_repo_path} to sys.path")

@@ -525,6 +525,7 @@ export function useVideoProject() {
 
             // Save segments to a temporary JSON file
             const tempJsonPath = `${cacheDir}\\segments.json`;
+            await (window as any).ipcRenderer.invoke('ensure-dir', cacheDir); // Ensure cache dir exists
             await (window as any).ipcRenderer.invoke('save-file', tempJsonPath, JSON.stringify(segmentsToUse));
 
             // Prepare arguments based on selected service
@@ -686,6 +687,7 @@ export function useVideoProject() {
             }
 
             const tempJsonPath = `${sessionOutputDir}\\segments.json`;
+            await (window as any).ipcRenderer.invoke('ensure-dir', sessionOutputDir); // Ensure session output dir exists
             await (window as any).ipcRenderer.invoke('save-file', tempJsonPath, JSON.stringify(segmentsForBackend));
 
             const result = await (window as any).ipcRenderer.invoke('run-backend', [

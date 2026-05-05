@@ -9,7 +9,6 @@ import ModelManager from './components/ModelManager';
 import TTSConfig from './components/TTSConfig';
 import ASRHub from './components/ASRHub';
 import TranslationConfig from './components/TranslationConfig';
-import StepBar from './components/StepBar';
 import ConfirmDialog from './components/ConfirmDialog';
 import AboutView from './components/AboutView';
 import MergeConfig from './components/MergeConfig';
@@ -110,11 +109,7 @@ function App() {
   useEffect(() => { localStorage.setItem('timelineWidth', timelineWidth.toString()); }, [timelineWidth]);
   useEffect(() => { localStorage.setItem('currentView', currentView); }, [currentView]);
 
-  // Workflow step calculation
-  const currentStep = !originalVideoPath ? 0 :
-    (segments.length === 0 ? 1 :
-      (translatedSegments.length === 0 ? 2 :
-        (translatedSegments.some(s => s.audioStatus !== 'ready') ? 3 : 4)));
+
 
   useEffect(() => {
     const validateLayout = () => {
@@ -538,7 +533,6 @@ function App() {
             </button>
           </div>
 
-          <StepBar currentStep={currentStep} themeMode={'dark'} />
 
           <div style={{ position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)' }}>
             {/* Unified Config Card */}

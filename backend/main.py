@@ -168,7 +168,7 @@ if not MODELS_HUB_DIR:
 
 if not os.path.exists(MODELS_HUB_DIR):
     print(f"[WARNING] Model directory not found: {MODELS_HUB_DIR}", file=sys.stderr)
-    print(f"[WARNING] Local WhisperX models will be unavailable. API-based services (Jianying/Bcut) can still be used.", file=sys.stderr)
+    print(f"[WARNING] Local WhisperX models will be unavailable. Free API service (Bcut) can still be used.", file=sys.stderr)
     # Don't exit, allow startup for API usage
     # sys.exit(1)
     
@@ -507,6 +507,7 @@ def dub_video(input_path, target_lang, output_path, asr_service="whisperx", vad_
         duration = item['duration']
         
         ref_clip_path = os.path.join(segments_dir, f"ref_{idx}.wav")
+        tts_output_path = os.path.join(segments_dir, f"dub_{idx}.wav")
         try:
             (
                 ffmpeg
@@ -604,7 +605,7 @@ def main():
     parser.add_argument("--text", type=str, help="Text to speak (for generate_single_tts)")
     parser.add_argument("--start", type=float, help="Start time in seconds (for generate_single_tts)", default=0.0)
     parser.add_argument("--model_dir", type=str, help="Path to models directory (HF_HOME)")
-    parser.add_argument("--asr", type=str, help="ASR service to use: whisperx, jianying, bcut", default="whisperx")
+    parser.add_argument("--asr", type=str, help="ASR service to use: whisperx, bcut", default="whisperx")
     parser.add_argument("--temperature", type=float, help="TTS Temperature", default=0.8)
     parser.add_argument("--top_p", type=float, help="Top P", default=0.8)
     parser.add_argument("--repetition_penalty", type=float, help="Repetition Penalty", default=1.0)
@@ -1192,7 +1193,17 @@ def main():
 
 if __name__ == "__main__":
     debug_log("Entering main block")
-    main()
+    try:
+        main()
+    except Exception as e:
+        import traceback
+        err_msg = traceback.format_exc()
+        debug_log(f"Unhandled Exception in main:\n{err_msg}")
+        print(f"ERROR: {e}", file=sys.stderr)
+        print(err_msg, file=sys.stderr)
+        sys.exit(1)
+        
+    debug_log("Main finished normally")
     print("Force exiting...")
     try:
         sys.stdout.close()

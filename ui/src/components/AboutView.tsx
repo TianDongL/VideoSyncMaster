@@ -1,6 +1,4 @@
 import React from 'react';
-import wxImg from '../../wx.jpg';
-import zfbImg from '../../zfb.jpg';
 
 interface AboutViewProps {
     themeMode?: 'light' | 'dark' | 'gradient';
@@ -40,44 +38,6 @@ const AboutView: React.FC<AboutViewProps> = ({ themeMode }) => {
                     </p>
                 </div>
 
-                <div style={{ marginBottom: '40px' }}>
-                    <h3 style={{ marginBottom: '20px', color: isLightMode ? '#1e293b' : '#fff' }}>赞助与支持</h3>
-                    <p style={{ marginBottom: '25px', color: isLightMode ? '#64748b' : '#94a3b8', fontSize: '0.95em' }}>
-                        如果您觉得这个工具有所帮助，欢迎通过微信或支付宝进行小额赞助，您的支持是我持续更新的动力。
-                    </p>
-
-                    <div style={{ display: 'flex', justifyContent: 'center', gap: '40px', flexWrap: 'wrap' }}>
-                        <div style={{ textAlign: 'center' }}>
-                            <div style={{
-                                width: '200px',
-                                height: '200px',
-                                background: '#fff',
-                                padding: '10px',
-                                borderRadius: '12px',
-                                boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-                                marginBottom: '10px'
-                            }}>
-                                <img src={wxImg} alt="WeChat Pay" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                            </div>
-                            <p style={{ fontWeight: 'bold', color: '#07c160' }}>微信支付</p>
-                        </div>
-
-                        <div style={{ textAlign: 'center' }}>
-                            <div style={{
-                                width: '200px',
-                                height: '200px',
-                                background: '#fff',
-                                padding: '10px',
-                                borderRadius: '12px',
-                                boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-                                marginBottom: '10px'
-                            }}>
-                                <img src={zfbImg} alt="Alipay" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                            </div>
-                            <p style={{ fontWeight: 'bold', color: '#1677ff' }}>支付宝支付</p>
-                        </div>
-                    </div>
-                </div>
 
                 <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: '20px', fontSize: '0.85em', color: isLightMode ? '#64748b' : '#94a3b8' }}>
                     <p>© 2026 VideoSyncMaster. Developed by 天冬 (TianDong)</p>

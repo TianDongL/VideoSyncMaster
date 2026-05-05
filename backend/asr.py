@@ -10,7 +10,6 @@ if os.path.exists(site_packages) and site_packages not in sys.path:
 import json
 import traceback
 
-from jianying import JianYingASR
 from bcut import BcutASR
 from asr_data import ASRData
 
@@ -297,22 +296,7 @@ def run_asr(audio_path, model_path=None, service="whisperx", output_dir=None, va
                 # Fallback to original path if extraction fails (though likely will fail later)
                 pass
 
-    if service == "jianying":
-        print(f"Running JianYing ASR on {audio_path}")
-        asr = JianYingASR(audio_path, need_word_time_stamp=False)
-        asr_data = asr.run()
-        # Convert ASRData to standard format
-        segments = []
-        for seg in asr_data.segments:
-            segments.append({
-                "start": seg.start_time / 1000.0,
-                "end": seg.end_time / 1000.0,
-                "text": seg.text
-            })
-        print(f"JianYing ASR complete. {len(segments)} segments.")
-        return segments
-
-    elif service == "bcut":
+    if service == "bcut":
         print(f"Running Bcut ASR on {audio_path}")
         asr = BcutASR(audio_path, need_word_time_stamp=False)
         asr_data = asr.run()
@@ -340,9 +324,6 @@ def run_asr(audio_path, model_path=None, service="whisperx", output_dir=None, va
             print(f"Qwen ASR execution failed: {e}")
             return []
     
-    # Default: WhisperX
-    
-    # WhisperX Service (Lazy Import)
     try:
         import torch
         import whisperx
@@ -426,7 +407,7 @@ def run_asr(audio_path, model_path=None, service="whisperx", output_dir=None, va
              error_msg = (
                  "Fatal Error: Local WhisperX model not found.\n"
                  "Please ensure the 'models' folder is placed in the application root.\n"
-                 "API services (Jianying/Bcut) are available without local models."
+                 "Free API service (Bcut) is available without local models."
              )
              print(error_msg)
              raise FileNotFoundError(error_msg)
